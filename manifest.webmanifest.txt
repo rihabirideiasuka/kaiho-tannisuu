@@ -1,0 +1,16 @@
+{
+  "name": "株売買履歴記録",
+  "short_name": "株売買記録",
+  "id": "/buy-sale-app/",
+  "start_url": "/buy-sale-app/",
+  "scope": "/buy-sale-app/",
+  "display": "standalone",
+  "background_color": "#f9f5ee",
+  "theme_color": "#f08c00",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "description": "株の売買履歴をワンタップで開くランチャー",
+  "categories": ["finance", "productivity"]
+}

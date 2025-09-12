@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#f08c00" />
+
+  <!-- iOS: ホーム追加に必須 -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png?v=1">
+  <link rel="manifest" href="./manifest.webmanifest?v=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- Android等: PWA manifest -->
+  <link rel="manifest" href="./manifest.webmanifest?v=1" />
+
+  <title>株売買記録 ランチャー</title>
+  <style>
+    :root{--bg:#f9f5ee;--card:#fff;--line:#e6dfd2;--fg:#2a2a2a;--muted:#6b6b6b;--accent:#f08c00;--radius:16px}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans JP',sans-serif}
+    .wrap{max-width:680px;margin:10vh auto;padding:24px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 6px 24px rgba(0,0,0,.06);text-align:center}
+    h1{margin:0 0 8px;font-size:1.4rem}
+    p{margin:6px 0 0}
+    .btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;border:0;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}
+    .tip{color:var(--muted);font-size:12px;line-height:1.6;margin-top:10px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>株売買履歴記録</h1>
+      <p>ホーム画面から起動するとアプリへ自動で移動します。</p>
+      <p class="tip">初回はそのまま<strong>ホーム画面に追加</strong>してからお使いください。</p>
+      <p><button id="openBtn" class="btn" type="button">今すぐ開く</button></p>
+      <p class="tip"><a href="./install.html">⇒ アイコンを確実に設定したい方はこちら（インストール専用）</a></p>
+    </div>
+  </div>
+
+  <script>
+    // ==== 設定：あなたのGAS URLに置き換えてください ====
+    const TARGET_URL = "https://script.google.com/macros/s/AKfycbyNGA2RrJaEBotxBqCaJ7Di0pl_NWfYC6t7wLAMGqNqq0loHhl7TTK3iCcUZucIkus3Cw/exec";
+    // =======================================================
+
+    // ホームアイコン（standalone）から起動されたら自動遷移
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    if (isStandalone) {
+      location.replace(TARGET_URL);
+    }
+
+    // 通常起動は静止。必要ならボタンで遷移
+    document.getElementById('openBtn').addEventListener('click', () => {
+      location.replace(TARGET_URL);
+    });
+
+    // （任意）SW登録：オフラインでの表示安定化
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(console.warn);
+    }
+  </script>
+</body>
+</html>
