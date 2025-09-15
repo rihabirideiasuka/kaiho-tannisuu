@@ -1,19 +1,29 @@
-{
-  "name": "リハデイ利用料",
-  "short_name": "リハデイ利用料",
-  "id": "./",               // ← 相対。識別子として固定
-  "start_url": "./",        // ← 相対
-  "scope": "./",            // ← 相対
-  "display": "standalone",
-  "background_color": "#f9f5ee",
-  "theme_color": "#f08c00",
-  "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+const CACHE = 'buy-sale-app-v1';
+const ASSETS = [
+  './',
+  './index.html',
+  './install.html',
+  './manifest.webmanifest',
+  './icons/icon-180.png',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+];
 
-    // （任意）Android 13+ の単色テーマ用
-    { "src": "icons/icon-mono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "monochrome" }
-  ],
-  "description": "リハデイ利用料をワンタップで開くランチャー",
-  "categories": ["finance", "productivity"]
-}
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+    )
+  );
+});
+
+self.addEventListener('fetch', e => {
+  const { request } = e;
+  e.respondWith(
+    caches.match(request).then(res => res || fetch(request))
+  );
+});
