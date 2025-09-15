@@ -1,9 +1,9 @@
 {
   "name": "リハデイ利用料",
   "short_name": "リハデイ利用料",
-  "id": "/buy-sale-app/",
-  "start_url": "/buy-sale-app/",
-  "scope": "/buy-sale-app/",
+  "id": "/kaiho-tannisuu-app/",
+  "start_url": "/kaiho-tannisuu-app/",
+  "scope": "/kaiho-tannisuu-app/",
   "display": "standalone",
   "background_color": "#f9f5ee",
   "theme_color": "#f08c00",
@@ -15,3 +15,4 @@
   "categories": ["finance", "productivity"]
 
 }
+
