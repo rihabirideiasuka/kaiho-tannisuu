@@ -1,14 +1,14 @@
 // sw.js
-const CACHE = 'kaiho-tannisuu-v3';
+const CACHE = 'kaiho-tannisuu-v4';  // ← 版上げ
 const ASSETS = [
   './',
   './index.html',
   './install.html',
-  './offline.html',          // ← 追加（簡易ページを用意）
+  './offline.html',
   './manifest.webmanifest',
-  './icons/icon-180.png',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
+  './icon-180.png',
+  './icon-192.png',
+  './icon-512.png',
 ];
 
 self.addEventListener('install', e => {
@@ -70,4 +70,5 @@ self.addEventListener('fetch', e => {
     return cached || fetchPromise;
   })());
 });
+
 
