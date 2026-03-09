@@ -1,5 +1,5 @@
 // sw.js
-const CACHE = 'kaiho-tannisuu-v4';  // ← 版上げ
+const CACHE = 'kaiho-tannisuu-v5';  // ← 版上げ
 const ASSETS = [
   './',
   './index.html',
@@ -70,5 +70,6 @@ self.addEventListener('fetch', e => {
     return cached || fetchPromise;
   })());
 });
+
 
 
